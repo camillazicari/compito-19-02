@@ -33,7 +33,7 @@ namespace compito_19_02.Controllers
                Nome = "Antonio",
                Cognome = "Rossi",
                Sala = Sale.SalaEst,
-               TipoBiglietto = Biglietto.Intero
+               TipoBiglietto = Biglietto.Ridotto
            }
         };
 
@@ -51,13 +51,21 @@ namespace compito_19_02.Controllers
         {
             ViewBag.SaleDisponibili = Enum.GetValues(typeof(Sale))
                                   .Cast<Sale>()
-                                  .Select(s => new SelectListItem { Value = s.ToString(), Text = s.ToString() })
+                                  .Select(s => new SelectListItem
+                                  {
+                                      Value = s.ToString(),  
+                                      Text = s.ToString()
+                                  })
                                   .ToList();
 
             ViewBag.BigliettiDisponibili = Enum.GetValues(typeof(Biglietto))
-                                  .Cast<Biglietto>()
-                                  .Select(b => new SelectListItem { Value = b.ToString(), Text = b.ToString() })
-                                  .ToList();
+                                    .Cast<Biglietto>()
+                                    .Select(b => new SelectListItem
+                                    {
+                                        Value = b.ToString(),
+                                        Text = b.ToString()
+                                    })
+                                    .ToList();
 
             return View();
         }
@@ -65,20 +73,20 @@ namespace compito_19_02.Controllers
         [HttpPost]
         public IActionResult Create(AddPrenotazioneModel addPrenotazioneModel)
         {
-            if (!ModelState.IsValid || !Enum.TryParse<Sale>(addPrenotazioneModel.Sala, out Sale salaSelezionata) || !Enum.TryParse<Biglietto>(addPrenotazioneModel.TipoBiglietto, out Biglietto bigliettoSelezionato))
+            if (!ModelState.IsValid)
             {
                 return RedirectToAction("Add");
             }
 
-            
+
 
             var nuovaPren = new Prenotazione()
             {
                 Id = Guid.NewGuid(),
                 Nome = addPrenotazioneModel.Nome,
                 Cognome = addPrenotazioneModel.Cognome,
-                Sala = salaSelezionata,
-                TipoBiglietto = bigliettoSelezionato,
+                Sala = addPrenotazioneModel.Sala,
+                TipoBiglietto = addPrenotazioneModel.TipoBiglietto,
             };
             prenotazione.Add(nuovaPren);
 

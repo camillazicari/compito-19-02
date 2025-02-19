@@ -20,20 +20,21 @@
         </div>
 
         <div>
-            <label for="sala" asp-for="Sala" class="form-label"></label>
-            <select name="Sala" id="Sala" asp-for="Sala" asp-items="ViewBag.SaleDisponibili">
+            <label for="Sala" class="form-label">Seleziona una Sala</label>
+            <select asp-for="Sala" class="form-control" asp-items="ViewBag.SaleDisponibili">
                 <option value="">-- Seleziona una Sala --</option>
             </select>
             <p class="text-danger" asp-validation-for="Sala"></p>
         </div>
 
         <div>
-            <label for="biglietto" asp-for="TipoBiglietto" class="form-label"></label>
-            <select name="Biglietto" id="Biglietto" asp-for="TipoBiglietto" asp-items="@ViewBag.BigliettiDisponibili">
+            <label for="TipoBiglietto" class="form-label"></label>
+            <select asp-for="TipoBiglietto" class="form-control" asp-items="ViewBag.BigliettiDisponibili">
                 <option value="">-- Seleziona un Biglietto --</option>
             </select>
             <p class="text-danger" asp-validation-for="TipoBiglietto"></p>
         </div>
+
         <div class="my-2 d-flex justify-content-between">
             <button class="btn btn-warning" type="reset">Reset</button>
             <button class="btn btn-success" type="submit">Save</button>

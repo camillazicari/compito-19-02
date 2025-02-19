@@ -16,10 +16,10 @@ namespace compito_19_02.Models
 
         [Display(Name = "Sala")]
         [Required(ErrorMessage = "La scelta della sala è obbligatoria!")]
-        public string Sala { get; set; }
+        public Sale Sala { get; set; }
 
         [Display(Name = "Biglietto")]
         [Required(ErrorMessage = "La scelta del tipo di biglietto è obbligatoria!")]
-        public string TipoBiglietto { get; set; }
+        public Biglietto TipoBiglietto { get; set; }
     }
 }

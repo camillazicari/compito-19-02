@@ -1,4 +1,6 @@
-﻿namespace compito_19_02.Models
+﻿using System.Globalization;
+
+namespace compito_19_02.Models
 {
     public enum Biglietto
     {

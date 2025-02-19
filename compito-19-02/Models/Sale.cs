@@ -2,8 +2,11 @@
 {
     public enum Sale
     {
+
         SalaNord,
         SalaEst,
         SalaSud
+        
     }
+
 }
