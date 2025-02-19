@@ -1,0 +1,34 @@
+﻿@model PrenotazioneViewModel
+
+@{
+	ViewData["Title"] = "Prenotazioni";
+}
+
+<h1 class="text-center fw-bold text-danger">Prenotazioni</h1>
+
+<div>
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr class="text-info text-center">
+                <th>NOME</th>
+                <th>COGNOME</th>
+                <th>SALA</th>
+                <th>TIPO BIGLIETTO</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var prenotazione in Model.Prenotazione)
+            {
+                <tr class="text-center">
+                    <td>@prenotazione.Nome</td>
+                    <td>@prenotazione.Cognome</td>
+                    <td>@prenotazione.Sala</td>
+                    <td>@prenotazione.TipoBiglietto</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="d-flex justify-content-end">
+    <a class="btn btn-success" asp-controller="Prenotazioni" asp-action="Add">Aggiungi</a>
+</div>

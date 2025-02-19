@@ -1,0 +1,42 @@
+﻿@model AddPrenotazioneModel 
+@{
+    ViewData["Title"] = "Nuova Prenotazione";
+}
+
+<h1 class="text-center text-danger fw-bold">Nuova prenotazione</h1>
+
+<div>
+    <form method="post" asp-controller="Prenotazioni" asp-action="Create">
+        <div>
+            <label for="nome" asp-for="Nome" class="form-label"></label>
+            <input id="nome" asp-for="Nome" class="form-control" />
+            <p class="text-danger" asp-validation-for="Nome"></p>
+        </div>
+
+        <div>
+            <label for="cognome" asp-for="Cognome" class="form-label"></label>
+            <input id="cognome" asp-for="Cognome" class="form-control" />
+            <p class="text-danger" asp-validation-for="Cognome"></p>
+        </div>
+
+        <div>
+            <label for="sala" asp-for="Sala" class="form-label"></label>
+            <select name="Sala" id="Sala" asp-for="Sala" asp-items="ViewBag.SaleDisponibili">
+                <option value="">-- Seleziona una Sala --</option>
+            </select>
+            <p class="text-danger" asp-validation-for="Sala"></p>
+        </div>
+
+        <div>
+            <label for="biglietto" asp-for="TipoBiglietto" class="form-label"></label>
+            <select name="Biglietto" id="Biglietto" asp-for="TipoBiglietto" asp-items="@ViewBag.BigliettiDisponibili">
+                <option value="">-- Seleziona un Biglietto --</option>
+            </select>
+            <p class="text-danger" asp-validation-for="TipoBiglietto"></p>
+        </div>
+        <div class="my-2 d-flex justify-content-between">
+            <button class="btn btn-warning" type="reset">Reset</button>
+            <button class="btn btn-success" type="submit">Save</button>
+        </div>
+    </form>
+</div>
