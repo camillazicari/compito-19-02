@@ -35,14 +35,64 @@ namespace compito_19_02.Controllers
                Sala = Sale.SalaEst,
                TipoBiglietto = Biglietto.Ridotto
            }
+
         };
 
         public IActionResult Index()
         {
+            List<Prenotazione> prenotazioniSalaNord = new List<Prenotazione>();
+            List<Prenotazione> prenotazioniSalaEst = new List<Prenotazione>();
+            List<Prenotazione> prenotazioniSalaSud = new List<Prenotazione>();
+
+            List<Prenotazione> ridottiSalaNord = new List<Prenotazione>();
+            List<Prenotazione> ridottiSalaEst = new List<Prenotazione>();
+            List<Prenotazione> ridottiSalaSud = new List<Prenotazione>();
+
+
+            foreach (var prenotazione in prenotazione)
+            {
+                if (prenotazione.Sala == Sale.SalaNord)
+                {
+                    prenotazioniSalaNord.Add(prenotazione);
+                    if (prenotazione.TipoBiglietto == Biglietto.Ridotto)
+                    {
+                        ridottiSalaNord.Add(prenotazione);
+                    }
+                }
+                else if (prenotazione.Sala == Sale.SalaEst)
+                {
+                    prenotazioniSalaEst.Add(prenotazione);
+                    if (prenotazione.TipoBiglietto == Biglietto.Ridotto)
+                    {
+                        ridottiSalaEst.Add(prenotazione);
+                    }
+                }
+                else
+                {
+                    prenotazioniSalaSud.Add(prenotazione);
+                    if (prenotazione.TipoBiglietto == Biglietto.Ridotto)
+                    {
+                        ridottiSalaSud.Add(prenotazione);
+                    }
+                }
+            }
+
+
             var prenot = new PrenotazioneViewModel()
             {
+                TotaleNord = prenotazioniSalaNord.Count(),
+                RidottiNord = ridottiSalaNord.Count(),
+
+                TotaleEst = prenotazioniSalaEst.Count(),
+                RidottiEst = ridottiSalaEst.Count(),
+
+                TotaleSud = prenotazioniSalaSud.Count(),
+                RidottiSud = ridottiSalaSud.Count(),
+
                 Prenotazione = prenotazione
             };
+
+            
 
             return View(prenot);
         }
